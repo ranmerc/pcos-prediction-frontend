@@ -23,8 +23,11 @@ export default function FormikForm() {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => {
-        console.log(values);
+      onSubmit={(values, actions) => {
+        setTimeout(() => {
+          console.log(values);
+          actions.setSubmitting(false);
+        }, 3000);
       }}
       component={FormMarkup}
     ></Formik>
