@@ -5,29 +5,26 @@ import {
   FormControlLabel,
   Radio,
 } from "@mui/material";
-import { ChangeEventHandler } from "react";
+import { useFormikContext } from "formik";
+import { BooleanFormValues } from "../types";
 
 export default function RadioInput({
   name,
   label,
-  value,
-  onChange,
 }: {
-  name: string;
+  name: keyof BooleanFormValues;
   label: string;
-  value: string;
-  onChange:
-    | ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
-    | undefined;
 }) {
+  const { values, handleChange } = useFormikContext<BooleanFormValues>();
+
   return (
     <FormControl required>
       <FormLabel id={name}>{label}</FormLabel>
       <RadioGroup
         aria-labelledby={name}
         name={name}
-        value={value}
-        onChange={onChange}
+        value={values[name]}
+        onChange={handleChange}
       >
         <FormControlLabel
           value="yes"

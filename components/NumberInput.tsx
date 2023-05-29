@@ -1,29 +1,26 @@
 import { TextField } from "@mui/material";
-import { ChangeEventHandler } from "react";
+import { useFormikContext } from "formik";
+import { NumericalFormValues } from "../types";
 
-export default function NumberInput<T>({
+export default function NumberInput({
   label,
   name,
-  value,
-  onChange,
   step = "1",
 }: {
   label: string;
-  name: string;
+  name: keyof NumericalFormValues;
   step?: string;
-  value: T;
-  onChange:
-    | ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
-    | undefined;
 }) {
+  const { values, handleChange } = useFormikContext<NumericalFormValues>();
+
   return (
     <TextField
       label={label}
       type="number"
       name={name}
       InputProps={{ inputProps: { step: step } }}
-      value={value}
-      onChange={onChange}
+      value={values[name]}
+      onChange={handleChange}
       variant="outlined"
       required
     />
