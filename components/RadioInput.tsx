@@ -5,18 +5,30 @@ import {
   FormControlLabel,
   Radio,
 } from "@mui/material";
+import { ChangeEventHandler } from "react";
 
 export default function RadioInput({
-  id,
+  name,
   label,
+  value,
+  onChange,
 }: {
-  id: string;
+  name: string;
   label: string;
+  value: string;
+  onChange:
+    | ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+    | undefined;
 }) {
   return (
     <FormControl required>
-      <FormLabel id={id}>{label}</FormLabel>
-      <RadioGroup aria-labelledby={id} defaultValue="no">
+      <FormLabel id={name}>{label}</FormLabel>
+      <RadioGroup
+        aria-labelledby={name}
+        name={name}
+        value={value}
+        onChange={onChange}
+      >
         <FormControlLabel
           value="yes"
           control={<Radio size="small" />}

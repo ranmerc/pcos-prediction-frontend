@@ -1,12 +1,30 @@
 import { Stack, Container, Typography, Button } from "@mui/material";
-import { FormEventHandler } from "react";
 import NumberInput from "../components/NumberInput";
 import RadioInput from "../components/RadioInput";
+import { useFormik } from "formik";
 
 const Home = () => {
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-  };
+  const formik = useFormik({
+    initialValues: {
+      age: "",
+      marriageStatus: "",
+      weight: "",
+      bmi: "",
+      follicleNoR: "",
+      follicleNoL: "",
+      amh: "",
+      regularCycle: "",
+      cycleLength: "",
+      skinDarkening: "no",
+      hairGrowth: "no",
+      weightGain: "no",
+      fastFood: "no",
+      pimples: "no",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
   return (
     <Container maxWidth="md">
@@ -18,28 +36,95 @@ const Home = () => {
           component="form"
           rowGap={4}
           width={"80%"}
-          onSubmit={handleSubmit}
+          onSubmit={formik.handleSubmit}
         >
-          <NumberInput label="Age" />
-          <NumberInput label="Martial Status (in years)" />
-          <NumberInput label="Weight (in kgs)" step="0.01" />
-          <NumberInput label="Body Mass Index (BMI)" step="0.01" />
-          <NumberInput label="Follicle Count Right" />
-          <NumberInput label="Follicle Count Left" />
-          <NumberInput label="Anti-Mullerian Hormone (ng/ml)" step="0.01" />
-          <NumberInput label="Regular Period Cycle (Length)" />
-          <NumberInput label="Period Cycle Length (Length)" />
+          <NumberInput
+            label="Age"
+            name="age"
+            value={formik.values.age}
+            onChange={formik.handleChange}
+          />
+          <NumberInput
+            label="Martial Status (in years)"
+            name="marriageStatus"
+            value={formik.values.marriageStatus}
+            onChange={formik.handleChange}
+          />
+          <NumberInput
+            label="Weight (in kgs)"
+            name="weight"
+            value={formik.values.weight}
+            onChange={formik.handleChange}
+            step="0.01"
+          />
+          <NumberInput
+            label="Body Mass Index (BMI)"
+            name="bmi"
+            value={formik.values.bmi}
+            onChange={formik.handleChange}
+            step="0.01"
+          />
+          <NumberInput
+            label="Follicle Count Right"
+            name="follicleNoR"
+            value={formik.values.follicleNoR}
+            onChange={formik.handleChange}
+          />
+          <NumberInput
+            label="Follicle Count Left"
+            name="follicleNoR"
+            value={formik.values.follicleNoR}
+            onChange={formik.handleChange}
+          />
+          <NumberInput
+            label="Anti-Mullerian Hormone (ng/ml)"
+            name="amh"
+            value={formik.values.amh}
+            onChange={formik.handleChange}
+            step="0.01"
+          />
+          <NumberInput
+            label="Regular Period Cycle (Length)"
+            name="regularCycle"
+            value={formik.values.regularCycle}
+            onChange={formik.handleChange}
+          />
+          <NumberInput
+            label="Period Cycle Length (Length)"
+            name="cycleLength"
+            value={formik.values.cycleLength}
+            onChange={formik.handleChange}
+          />
 
-          <RadioInput label="Is your skin darkening?" id="skin-darkening" />
+          <RadioInput
+            label="Is your skin darkening?"
+            name="skinDarkening"
+            value={formik.values.skinDarkening}
+            onChange={formik.handleChange}
+          />
           <RadioInput
             label="Are you experiencing excessive facial hair growth?"
-            id="hair-growth"
+            name="hairGrowth"
+            value={formik.values.hairGrowth}
+            onChange={formik.handleChange}
           />
-          <RadioInput label="Have you gained weight?" id="weight-gain" />
-          <RadioInput label="Do you regularly eat fast food?" id="fast-food" />
+          <RadioInput
+            label="Have you gained weight?"
+            name="weightGain"
+            value={formik.values.weightGain}
+            onChange={formik.handleChange}
+          />
+          <RadioInput
+            label="Do you regularly eat fast food?"
+            name="fastFood"
+            value={formik.values.fastFood}
+            onChange={formik.handleChange}
+          />
           <RadioInput
             label="Do you seem to be getting more acne?"
-            id="fast-food"
+            name="pimples"
+            value={formik.values.pimples}
+            onChange={formik.handleChange}
           />
 
           <Button variant="contained" size="large" type="submit">
