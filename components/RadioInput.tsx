@@ -15,16 +15,18 @@ export default function RadioInput({
   name: keyof BooleanFormValues;
   label: string;
 }) {
-  const { values, handleChange } = useFormikContext<BooleanFormValues>();
+  const { values, handleChange, handleBlur, touched, errors } =
+    useFormikContext<BooleanFormValues>();
 
   return (
-    <FormControl required>
+    <FormControl required error={touched[name] && errors[name] ? true : false}>
       <FormLabel id={name}>{label}</FormLabel>
       <RadioGroup
         aria-labelledby={name}
         name={name}
         value={values[name]}
         onChange={handleChange}
+        onBlur={handleBlur}
       >
         <FormControlLabel
           value="yes"

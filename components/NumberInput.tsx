@@ -11,7 +11,8 @@ export default function NumberInput({
   name: keyof NumericalFormValues;
   step?: string;
 }) {
-  const { values, handleChange } = useFormikContext<NumericalFormValues>();
+  const { values, handleChange, handleBlur, errors, touched } =
+    useFormikContext<NumericalFormValues>();
 
   return (
     <TextField
@@ -23,6 +24,9 @@ export default function NumberInput({
       onChange={handleChange}
       variant="outlined"
       required
+      onBlur={handleBlur}
+      error={touched[name] && errors[name] ? true : false}
+      helperText={touched[name] && errors[name]}
     />
   );
 }

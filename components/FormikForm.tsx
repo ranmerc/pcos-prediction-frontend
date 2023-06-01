@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import FormMarkup from "./Form";
 import { FormValues } from "../types";
+import formSchema from "../schemas/formSchema";
 
 const initialValues: FormValues = {
   age: "",
@@ -29,6 +30,7 @@ export default function FormikForm() {
           actions.setSubmitting(false);
         }, 3000);
       }}
+      validationSchema={formSchema}
       component={FormMarkup}
     ></Formik>
   );
