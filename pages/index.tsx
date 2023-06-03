@@ -1,6 +1,9 @@
 import { Stack, Container, Typography } from "@mui/material";
 import FormikForm from "../components/FormikForm";
 import Head from "next/head";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const Home = () => {
   return (
@@ -13,7 +16,9 @@ const Home = () => {
           <Typography variant="h2" textAlign={"center"} letterSpacing={"1px"}>
             PCOS Prediction
           </Typography>
-          <FormikForm />
+          <QueryClientProvider client={queryClient}>
+            <FormikForm />
+          </QueryClientProvider>
         </Stack>
       </Container>
     </>

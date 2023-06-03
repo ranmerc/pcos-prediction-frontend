@@ -20,3 +20,7 @@ export interface BooleanFormValues {
 }
 
 export interface FormValues extends NumericalFormValues, BooleanFormValues {}
+
+export default interface PredictionType {
+  atRisk: boolean;
+}
